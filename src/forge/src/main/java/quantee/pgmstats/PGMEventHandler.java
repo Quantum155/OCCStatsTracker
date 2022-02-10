@@ -299,7 +299,6 @@ public class PGMEventHandler {
 	
 	@SubscribeEvent
 	public void onClientConnectedToServer(ClientConnectedToServerEvent event) {
-		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
 		isLoaded = true;
 		
 		File f = new File("OCCStatsSaveFile.txt");
