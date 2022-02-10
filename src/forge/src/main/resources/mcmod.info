@@ -1,0 +1,16 @@
+[
+{
+  "modid": "occstatstracker",
+  "name": "OCC Stats Tracker",
+  "description": "Simple mod to track your stats on OCC as they don't have any system inplace.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Quantee"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
