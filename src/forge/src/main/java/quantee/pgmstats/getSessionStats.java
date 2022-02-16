@@ -26,19 +26,19 @@ public class getSessionStats extends CommandBase{
 	@Override
 	public void processCommand(ICommandSender sender, String[] args) throws CommandException {
 		try {
-		Integer sessionKills = PGMEventHandler.sessionKills;
-		Integer sessionDeaths = PGMEventHandler.sessionDeaths;
+		Integer sessionKills = OCCEventHandler.sessionKills;
+		Integer sessionDeaths = OCCEventHandler.sessionDeaths;
 		
-		Integer sessionObjDamage = PGMEventHandler.sessionObjDamage;
-		Integer sessionMonuDestroys = PGMEventHandler.sessionMonuDestroys;
-		Integer sessionWoolCaps = PGMEventHandler.sessionWoolCaps;
-		Integer sessionSSs = PGMEventHandler.sessionSSs;
+		Integer sessionObjDamage = OCCEventHandler.sessionObjDamage;
+		Integer sessionMonuDestroys = OCCEventHandler.sessionMonuDestroys;
+		Integer sessionWoolCaps = OCCEventHandler.sessionWoolCaps;
+		Integer sessionSSs = OCCEventHandler.sessionSSs;
 		
 		Integer tempdeaths = sessionDeaths;
 		
 		if(tempdeaths == 0) {tempdeaths++;}
 		
-		double sessionkpd = (double) (sessionKills / tempdeaths);
+		double sessionkpd = ((double) sessionKills) / tempdeaths; 
 		
 		sender.addChatMessage(new ChatComponentText("\n" + EnumChatFormatting.GREEN  + " ----------- [Session Stats] -----------"));
 		sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN  + "Session kills: "  + EnumChatFormatting.BLUE + sessionKills));

@@ -26,18 +26,6 @@ public class OCCLeveling {
 	
 	final static String occt = bo + "" + gr + "[" + bl + "OC" + db + "CT" + gr + "] " + re;
 	
-	// Thanks, stackowerflow
-	private static int round(double d){
-	    double dAbs = Math.abs(d);
-	    int i = (int) dAbs;
-	    double result = dAbs - (double) i;
-	    if(result<0.5){
-	        return d<0 ? -i : i;            
-	    }else{
-	        return d<0 ? -(i+1) : i+1;          
-	    }
-	}
-	
 	static boolean isLevelingLoaded = false;
 	
 	static Integer isLevelingEnabled = 0;  // Would be a boolean but saving only supports Integer. 0 -> false, 1 -> true. 
@@ -51,7 +39,7 @@ public class OCCLeveling {
 	
 	public static void loadXp (int Xp) {
 		if (!isLevelingLoaded && isLevelingEnabled == 1) {
-		xp += Xp;
+		xp = Xp;
 		}
 	}
 	
@@ -73,18 +61,24 @@ public class OCCLeveling {
 			xp += Xp;
 			player.addChatComponentMessage(new ChatComponentText(pu + "+" + Xp + "XP"));
 			
-			if (xp >= getLevelRequirement()) {
+			if (xp > getLevelRequirement()) {
+				int remaining_xp = xp - getLevelRequirement();
+				player.addChatComponentMessage(new ChatComponentText("DEBUG: Carryover xp - XP: " + xp + "; LVL REQ: " + getLevelRequirement() + " Remaining: " + remaining_xp));
 				xp = 0;
 				level += 1;
 				player.addChatComponentMessage(new ChatComponentText(bo + "" + gr + "Congratulations! You levelled up!"));
 				player.addChatComponentMessage(new ChatComponentText(renderLevelString(level-1) + bl + " --> " + renderLevelString(level)));
+				if (remaining_xp > 0) {
+					
+					CreditXp(remaining_xp);
+				}
 			}	
 		}
 	}
 	
 	public static int getLevelRequirement() {
 		double expon_level = Math.pow(level, exponent);
-		int xp_needed = round(baseXP * expon_level);
+		int xp_needed = OCCEventHandler.round(baseXP * expon_level);
 		return xp_needed;
 	}
 	
@@ -129,27 +123,27 @@ public class OCCLeveling {
 			output += da;
 			output += "[" + characters[0];
 			output += aq + characters[1];
-			output += bl + characters[2] + "✶]";
+			output += bl + characters[2] + "\u2736]";
 		}
 		else if (Level < 200) {
 			output += go;
 			output += "[" + characters[0];
 			output += rd + characters[1];
-			output += dr + characters[2] + "✸]";
+			output += dr + characters[2] + "\u2738]";
 		}
 		else if (Level < 250) {
 			output += bo;
 			output += aq;
 			output += "[" + characters[0];
 			output += gr + characters[1];
-			output += dg + characters[2] + "⚝]";
+			output += dg + characters[2] + "\u269D]";
 		}
 		else if (Level < 300) {
 			output += bo;
 			output += bl;
 			output += "[" + characters[0];
 			output += pu + characters[1];
-			output += dp + characters[2] + "❂]";
+			output += dp + characters[2] + "\u2756]";
 		}
 		else if (Level >= 300) {
 			output += bo;

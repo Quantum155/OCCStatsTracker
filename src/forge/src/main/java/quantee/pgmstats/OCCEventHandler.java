@@ -14,7 +14,20 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent.ClientConnectedToServerEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent.ClientDisconnectionFromServerEvent;
 
-public class PGMEventHandler {
+public class OCCEventHandler {
+	
+	public static int round(double d){
+	    double dAbs = Math.abs(d);
+	    int i = (int) dAbs;
+	    double result = dAbs - (double) i;
+	    if(result<0.5){
+	        return d<0 ? -i : i;            
+	    }else{
+	        return d<0 ? -(i+1) : i+1;          
+	    }
+	}
+	
+	//TODO need to refactor this code, move stats tracking out of event handler
 	
 	private static ArrayList<String> deathMessages = new ArrayList<String>();
 	
@@ -112,9 +125,9 @@ public class PGMEventHandler {
 				if (isValid)
 				{
 					maxpoints += 3;
-					if (killstreak > 4)
+					if (killstreak > 2)
 					{
-						player.addChatComponentMessage(new ChatComponentText(occt + rd + "Shutdown! Lost killstreak of " + killstreak));
+						player.addChatComponentMessage(new ChatComponentText(occt + "" +  rd + "Shutdown! Lost killstreak of " + killstreak));
 					}
 					killstreak = 0;
 					deathCount ++;
@@ -140,6 +153,7 @@ public class PGMEventHandler {
 				{
 					Integer killStreakBonus = ((killstreak - 3) * killstreakBonusMultiplier) + 2; // Give bonus points for high killstreaks
 					points += killStreakBonus;
+					OCCLeveling.CreditXp(killStreakBonus);
 					player.addChatComponentMessage(new ChatComponentText(occt + bl + "Killstreak! (" + killstreak + ")"));
 				}
 				OCCLeveling.CreditXp(5);
@@ -251,10 +265,11 @@ public class PGMEventHandler {
 				if (rating == "SS")
 				{
 					sessionSSs ++;
+					lifetimeSSs ++;
 				}
 				
 				//Print match end stats
-				player.addChatComponentMessage(new ChatComponentText(occt + gr + "Match performance rating: " + bl + rating + gr + "(" + bl + precentage + gr +")"));
+				player.addChatComponentMessage(new ChatComponentText(occt + gr + "Match performance rating: " + bl + rating + gr + " (" + bl + precentage + gr +"%)"));
 				
 				//saving stats
 				

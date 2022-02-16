@@ -27,19 +27,19 @@ public class getLifetimeStats extends CommandBase{
 	public void processCommand(ICommandSender sender, String[] args) throws CommandException {
 		try {
 			
-			if (PGMEventHandler.isLoaded) {
-				Integer lifetimeKills = PGMEventHandler.lifetimeKills;
-				Integer lifetimeDeaths = PGMEventHandler.lifetimeDeaths;
+			if (OCCEventHandler.isLoaded) {
+				Integer lifetimeKills = OCCEventHandler.lifetimeKills;
+				Integer lifetimeDeaths = OCCEventHandler.lifetimeDeaths;
 				
-				Integer lifetimeObjDamage = PGMEventHandler.lifetimeObjDamage;
-				Integer lifetimeMonuDestroys = PGMEventHandler.lifetimeMonuDestroys;
-				Integer lifetimeWoolCaps = PGMEventHandler.lifetimeWoolCaps;
-				Integer lifetimeSSs = PGMEventHandler.lifetimeSSs;
+				Integer lifetimeObjDamage = OCCEventHandler.lifetimeObjDamage;
+				Integer lifetimeMonuDestroys = OCCEventHandler.lifetimeMonuDestroys;
+				Integer lifetimeWoolCaps = OCCEventHandler.lifetimeWoolCaps;
+				Integer lifetimeSSs = OCCEventHandler.lifetimeSSs;
 				Integer tempdeaths = lifetimeDeaths;
 				
 				if(tempdeaths == 0) {tempdeaths++;}
 				
-				double lifetimekpd = (double) (lifetimeKills / tempdeaths);
+				double lifetimekpd = ((double) lifetimeKills) / tempdeaths;  // Testing if it works without rounding
 				
 				sender.addChatMessage(new ChatComponentText("\n" + EnumChatFormatting.GREEN  + " ----------- [Lifetime Stats] -----------"));
 				sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN  + "Lifetime kills: "  + EnumChatFormatting.BLUE + lifetimeKills));
