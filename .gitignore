@@ -1,0 +1,7 @@
+\src\forge\build
+\src\forge\bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
