@@ -30,10 +30,4 @@ public class PGMTracker{
 		MinecraftForge.EVENT_BUS.register(occeventhandler);
 		MinecraftForge.EVENT_BUS.register(this);		
 	}
-	
-	@EventHandler
-	public void postInit(FMLPostInitializationEvent event)
-	{
-		
-	}
 }

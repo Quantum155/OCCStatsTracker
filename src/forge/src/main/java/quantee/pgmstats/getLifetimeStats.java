@@ -1,5 +1,7 @@
 package quantee.pgmstats;
 
+import java.text.DecimalFormat;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -39,14 +41,14 @@ public class getLifetimeStats extends CommandBase{
 				
 				if(tempdeaths == 0) {tempdeaths++;}
 				
-				double lifetimekpd = ((double) lifetimeKills) / tempdeaths;  // Testing if it works without rounding
-				
+				DecimalFormat df = new DecimalFormat("##.##");
+				double lifetimekpd = ((double) lifetimeKills) / tempdeaths;
 				sender.addChatMessage(new ChatComponentText("\n" + EnumChatFormatting.GREEN  + " ----------- [Lifetime Stats] -----------"));
 				sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN  + "Lifetime kills: "  + EnumChatFormatting.BLUE + lifetimeKills));
 				sender.addChatMessage(new ChatComponentText(EnumChatFormatting.RED    + "Lifetime deaths: " + EnumChatFormatting.BLUE + lifetimeDeaths));
-				sender.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "Lifetime K/D: "    + EnumChatFormatting.BLUE + lifetimekpd + "\n"));
+				sender.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "Lifetime K/D: "    + EnumChatFormatting.BLUE + df.format(lifetimekpd) + "\n"));
 				
-				sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN  + "Lifetime objectives damaged: "  + EnumChatFormatting.BLUE + lifetimeObjDamage));
+				sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN  + "Lifetime objective damages: "  + EnumChatFormatting.BLUE + lifetimeObjDamage));
 				sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN  + "Lifetime monuments destroyed: " + EnumChatFormatting.BLUE + lifetimeMonuDestroys));
 				sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN  + "Lifetime wools captured: "      + EnumChatFormatting.BLUE + lifetimeWoolCaps));
 				sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN  + "Lifetime SS gained: "           + EnumChatFormatting.BLUE + lifetimeSSs));

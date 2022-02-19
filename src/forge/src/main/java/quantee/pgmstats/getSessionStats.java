@@ -1,5 +1,7 @@
 package quantee.pgmstats;
 
+import java.text.DecimalFormat;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -38,12 +40,13 @@ public class getSessionStats extends CommandBase{
 		
 		if(tempdeaths == 0) {tempdeaths++;}
 		
+		DecimalFormat df = new DecimalFormat("##.##");
 		double sessionkpd = ((double) sessionKills) / tempdeaths; 
 		
 		sender.addChatMessage(new ChatComponentText("\n" + EnumChatFormatting.GREEN  + " ----------- [Session Stats] -----------"));
 		sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN  + "Session kills: "  + EnumChatFormatting.BLUE + sessionKills));
 		sender.addChatMessage(new ChatComponentText(EnumChatFormatting.RED    + "Session deaths: " + EnumChatFormatting.BLUE + sessionDeaths));
-		sender.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "Sessiok K/D: "    + EnumChatFormatting.BLUE + sessionkpd + "\n"));
+		sender.addChatMessage(new ChatComponentText(EnumChatFormatting.YELLOW + "Sessiok K/D: "    + EnumChatFormatting.BLUE + df.format(sessionkpd) + "\n"));
 		
 		sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN  + "Session objectives damaged: "  + EnumChatFormatting.BLUE + sessionObjDamage));
 		sender.addChatMessage(new ChatComponentText(EnumChatFormatting.GREEN  + "Session monuments destroyed: " + EnumChatFormatting.BLUE + sessionMonuDestroys));
