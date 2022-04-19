@@ -1,4 +1,3 @@
-// I write shit code. But it works. Thats enough for me. -Quantee
 package quantee.pgmstats;
 
 import java.io.File;
@@ -52,15 +51,17 @@ public class OCCEventHandler {
 	
 	static public Integer sessionObjDamage = 0;
 	static public Integer sessionMonuDestroys = 0;
+	static public Integer sessionCoreDestroys = 0;
 	static public Integer sessionWoolCaps = 0;
 	static public Integer sessionSSs = 0;
 	
-	//lifetime tracker variables, also bad code in terms of loading/writing. 
+	//lifetime tracker variables, also bad code in terms of loading/writing. Needs refactoring
 	static public Integer lifetimeKills = 0;
 	static public Integer lifetimeDeaths = 0;
 	
 	static public Integer lifetimeObjDamage = 0;
 	static public Integer lifetimeMonuDestroys = 0;
+	static public Integer lifetimeCoreDestroys = 0;
 	static public Integer lifetimeWoolCaps = 0;
 	static public Integer lifetimeSSs = 0;
 	
@@ -110,13 +111,7 @@ public class OCCEventHandler {
 		{
 			formattedDeathMessages.add(m.replace("PLAYER", Minecraft.getMinecraft().thePlayer.getName()));
 		}
-		
-		// Player joins a team
-		if (msg.startsWith("You joined")) 
-		{
-						
-		}
-		
+
 		// Player died.
 		for(String m : formattedDeathMessages)
 		{
@@ -159,7 +154,8 @@ public class OCCEventHandler {
 				OCCLeveling.CreditXp(5);
 			}
 		}
-		
+
+		// todo isValid no longer used. Needs refactor.
 		if (isValid)
 		{
 			//player picks up wool
