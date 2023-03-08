@@ -7,8 +7,6 @@ Usage and install:
 Requires minecraft forge 1.8.9  
 Full compatibility with oc.tc and partial compatibility with warz.one  
 
-Put the downloaded .jar file in your .minecraft/mods folder  
-
 /sessionstats - shows your stats in your current session (since you opened minecraft)  
 /lifetimestats - shows your lifetime stats  
 
@@ -19,5 +17,6 @@ Put the downloaded .jar file in your .minecraft/mods folder
 /togglekillstreak - toggles the killstreak and killstreak lost messages. On by default.  
 
 -------------------------  
-Notes to anyone who want to make the mistake of looking at the source code:  
-I'm very bad at Java. In fact i don't even know Java. I'm just using my experience from other languages to make something that works.  
+
+
+Update - Since OCC added stat tracking this is now obsolete
